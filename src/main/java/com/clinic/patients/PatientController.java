@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.clinic.patients.PatientRepository;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import java.util.List;
 
 @RestController
@@ -26,4 +26,13 @@ public class PatientController{
     public Patient findById(@PathVariable Long id){
         return patientRepository.findById(id).orElseThrow(() -> new RuntimeException("Patient not found"));
     }
-}   
+    @PostMapping
+    public Patient create(@RequestBody Patient patient){
+        return patientRepository.save(patient);
+    }
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        patientRepository.deleteById(id);
+    }
+
+}
