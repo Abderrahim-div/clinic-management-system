@@ -27,11 +27,11 @@ public class PatientController{
         return patientRepository.findById(id).orElseThrow(() -> new RuntimeException("Patient not found"));
     }
     @PostMapping
-    public Patient create(@RequestBody Patient patient){
+    public Patient createPatient(@RequestBody Patient patient){
         return patientRepository.save(patient);
     }
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id){
+    public void deletePatient(@PathVariable Long id){
         patientRepository.deleteById(id);
     }
 
